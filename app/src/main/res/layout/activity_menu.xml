@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Menu">
+
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="157dp"
+        android:layout_height="74dp"
+        android:layout_marginBottom="50dp"
+        android:text="¡A LANZAR!"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/secondLinearLayout"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/dado4"
+        android:layout_width="98dp"
+        android:layout_height="104dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="108dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/image_selector" />
+
+    <ImageView
+        android:id="@+id/dado6"
+        android:layout_width="98dp"
+        android:layout_height="104dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="108dp"
+        app:layout_constraintStart_toEndOf="@+id/dado4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/image_selector2" />
+
+    <ImageView
+        android:id="@+id/dado8"
+        android:layout_width="98dp"
+        android:layout_height="104dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="108dp"
+        app:layout_constraintStart_toEndOf="@+id/dado6"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/image_selector3" />
+
+    <ImageView
+        android:id="@+id/dado10"
+        android:layout_width="98dp"
+        android:layout_height="104dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dado4"
+        app:srcCompat="@drawable/image_selector4" />
+
+
+    <ImageView
+        android:id="@+id/dado20"
+        android:layout_width="98dp"
+        android:layout_height="104dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintStart_toEndOf="@+id/dado12"
+        app:layout_constraintTop_toBottomOf="@+id/dado8"
+        app:srcCompat="@drawable/image_selector6" />
+
+    <ImageView
+        android:id="@+id/dado12"
+        android:layout_width="98dp"
+        android:layout_height="104dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintStart_toEndOf="@+id/dado10"
+        app:layout_constraintTop_toBottomOf="@+id/dado6"
+        app:srcCompat="@drawable/image_selector5" />
+
+    <ImageView
+        android:id="@+id/dosdados"
+        android:layout_width="98dp"
+        android:layout_height="104dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="532dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/image_selector_dosdados" />
+
+    <ImageView
+        android:id="@+id/undado"
+        android:layout_width="98dp"
+        android:layout_height="104dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="532dp"
+        app:layout_constraintStart_toEndOf="@+id/dosdados"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/image_selector_undado" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/gray"
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ESCOGE TIPO DE DADO"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:layout_gravity="center_vertical"
+            android:gravity="start"
+            android:layout_marginStart="16dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/secondLinearLayout"
+        android:layout_width="412dp"
+        android:layout_height="69dp"
+        android:layout_marginBottom="400dp"
+        android:background="@color/gray"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <TextView
+            android:id="@+id/secondTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="16dp"
+            android:gravity="start"
+            android:text="ESCOGE CANTIDAD DE DADOS"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
