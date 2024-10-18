@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -13,6 +14,9 @@ class Menu : AppCompatActivity() {
 
     private var selectedImageView: ImageView? = null
     private var selectedCantidad: ImageView? = null
+
+    private var tipoDadoSeleccionado: Int = 0
+    private var cantidadDadosSeleccionada: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,9 +29,18 @@ class Menu : AppCompatActivity() {
         }
 
         val btn: Button = findViewById(R.id.button)
+
         btn.setOnClickListener {
-            val intent: Intent = Intent(this, Lanzamiento:: class.java)
-            startActivity(intent)
+            //verificamos si se ha seleccionado un tipo de dado y cantidad
+            if (tipoDadoSeleccionado != 0 && cantidadDadosSeleccionada != 0) {
+                val intent = Intent(this, Lanzamiento::class.java)
+                // Pasar el tipo de dado y la cantidad de dados
+                intent.putExtra("tipo_dado", tipoDadoSeleccionado)
+                intent.putExtra("cantidad_dados", cantidadDadosSeleccionada)
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "Por favor selecciona el tipo y la cantidad de dados.", Toast.LENGTH_SHORT).show()
+            }
         }
 
 
@@ -43,32 +56,31 @@ class Menu : AppCompatActivity() {
 
 
         // Configurar los listeners
-        dado4.setOnClickListener { selectImage(dado4) }
-        dado6.setOnClickListener { selectImage(dado6) }
-        dado8.setOnClickListener { selectImage(dado8) }
-        dado10.setOnClickListener { selectImage(dado10) }
-        dado12.setOnClickListener { selectImage(dado12) }
-        dado20.setOnClickListener { selectImage(dado20) }
-        undado.setOnClickListener { selectCantidad(undado) }
-        dosdados.setOnClickListener { selectCantidad(dosdados) }
+        dado4.setOnClickListener { selectImage(dado4, 4) }
+        dado6.setOnClickListener { selectImage(dado6, 6) }
+        dado8.setOnClickListener { selectImage(dado8, 8) }
+        dado10.setOnClickListener { selectImage(dado10, 10) }
+        dado12.setOnClickListener { selectImage(dado12, 12) }
+        dado20.setOnClickListener { selectImage(dado20, 20) }
+        undado.setOnClickListener { selectCantidad(undado, 1) }
+        dosdados.setOnClickListener { selectCantidad(dosdados, 2) }
 
     }
 
-    private fun selectImage(imageView: ImageView) {
+    private fun selectImage(imageView: ImageView, tipoDado: Int) {
         // Deselecciona la imagen
         selectedImageView?.isSelected = false
-
         // Selecciona la imagen
         imageView.isSelected = true
         selectedImageView = imageView
+        // Guardar el tipo de dado seleccionado
+        tipoDadoSeleccionado = tipoDado
     }
 
-    private fun selectCantidad(imageView: ImageView) {
-        // Deseleccionar la imagen de cantidad previamente seleccionada
+    private fun selectCantidad(imageView: ImageView, cantidad: Int) {
         selectedCantidad?.isSelected = false
-
-        // Seleccionar la nueva imagen de cantidad
         imageView.isSelected = true
         selectedCantidad = imageView
+        cantidadDadosSeleccionada = cantidad
     }
 }
