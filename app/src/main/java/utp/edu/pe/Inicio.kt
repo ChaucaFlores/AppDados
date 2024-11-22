@@ -6,6 +6,7 @@ import android.text.InputType
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -22,16 +23,10 @@ class Inicio : AppCompatActivity() {
             insets
         }
 
-        // Botón para iniciar sesión
-        val btn: Button = findViewById(R.id.button)
-        btn.setOnClickListener {
-            val intent: Intent = Intent(this, Menu::class.java)
-            startActivity(intent)
-        }
-
-        // Funcionalidad del campo de contraseña y botón de visibilidad
+        val usernameEditText: EditText = findViewById(R.id.log_usu)
         val passwordEditText: EditText = findViewById(R.id.log_pass)
         val toggleVisibility: ImageView = findViewById(R.id.toggle_password_visibility)
+        val loginButton: Button = findViewById(R.id.button)
 
         var isPasswordVisible = false
 
@@ -45,9 +40,22 @@ class Inicio : AppCompatActivity() {
                 passwordEditText.inputType = InputType.TYPE_CLASS_TEXT
                 toggleVisibility.setImageResource(R.drawable.mostrar)
             }
-            // Mantener el cursor al final del texto
             passwordEditText.setSelection(passwordEditText.text.length)
             isPasswordVisible = !isPasswordVisible
+        }
+
+        // iniciar sesión
+        loginButton.setOnClickListener {
+            val username = usernameEditText.text.toString()
+            val password = passwordEditText.text.toString()
+
+            if (username == "admin" && password == "1234") {
+                Toast.makeText(this, "Iniciando sesión...", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, Menu::class.java)
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

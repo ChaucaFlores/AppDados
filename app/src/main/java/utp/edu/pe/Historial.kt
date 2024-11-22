@@ -2,40 +2,85 @@ package utp.edu.pe
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import androidx.activity.enableEdgeToEdge
+import android.widget.TableLayout
+import android.widget.TableRow
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.appcompat.widget.AppCompatButton
 
 class Historial : AppCompatActivity() {
+
+    private lateinit var historialContent: TableLayout
+    private lateinit var btnVolverLanzar: AppCompatButton
+    private lateinit var btnMenu: AppCompatButton
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_historial)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        // Obtener la referencia del TableLayout
+        historialContent = findViewById(R.id.historial_content)
+
+        // Recuperar la lista de resultados enviada desde Lanzamiento
+        val historialResultados = intent.getStringArrayListExtra("historial") ?: arrayListOf()
+        val tipoDado = intent.getIntExtra("tipo_dado", 6) // Recuperar el tipo de dado
+        val cantidadDados = intent.getIntExtra("cantidad_dados", 1) // Recuperar la cantidad de dados
+
+        val tableRowHeader = TableRow(this)
+        val textViewHeader = TextView(this)
+
+        textViewHeader.text = " CARAS: $tipoDado    CANTIDAD: $cantidadDados"
+        textViewHeader.textSize = 30f
+        textViewHeader.setTypeface(null, android.graphics.Typeface.BOLD)
+        textViewHeader.setPadding(8, 8, 8, 8)
+        textViewHeader.setTextColor(resources.getColor(android.R.color.black))  // Cambiar color del encabezado a negro
+        tableRowHeader.addView(textViewHeader)
+        historialContent.addView(tableRowHeader)
+
+        // Verifica si la lista tiene resultados y muestra
+        if (historialResultados.isNotEmpty()) {
+            for (resultado in historialResultados) {
+                val tableRow = TableRow(this)
+
+                // Crear un TextView para cada resultado
+                val textView = TextView(this)
+                textView.text = resultado
+                textView.setPadding(38, 0, 0, 0)
+                textView.setTextColor(resources.getColor(android.R.color.black))
+
+                // Añadir el TextView a la fila
+                tableRow.addView(textView)
+
+                // Añadir la fila al TableLayout
+                historialContent.addView(tableRow)
+            }
+        } else {
+            val tableRow = TableRow(this)
+            val textView = TextView(this)
+            textView.text = "No hay resultados aún."
+            textView.setPadding(8, 8, 8, 8)
+            textView.setTextColor(resources.getColor(android.R.color.black))  // Cambiar color del texto a negro
+            tableRow.addView(textView)
+            historialContent.addView(tableRow)
         }
 
-        val tipoDado = intent.getIntExtra("tipo_dado", 0)
-        val cantidadDados = intent.getIntExtra("cantidad_dados", 0)
+        // Configurar los botones
+        btnVolverLanzar = findViewById(R.id.button1)
+        btnMenu = findViewById(R.id.button2)
 
-        // volver a lanzar
-        val btn: Button = findViewById(R.id.button1)
-        btn.setOnClickListener {
-            val intent = Intent(this, Lanzamiento::class.java)
-            intent.putExtra("tipo_dado", tipoDado) // Enviar el tipo de dado
-            intent.putExtra("cantidad_dados", cantidadDados) // Enviar la cantidad de dados
-            startActivity(intent)
+        btnVolverLanzar.setOnClickListener {
+            // Volver a la actividad de lanzamiento
+            onBackPressed()
         }
 
-        // menú
-        val btn2: Button = findViewById(R.id.button2)
-        btn2.setOnClickListener {
+        btnMenu.setOnClickListener {
+            // Crear un Intent para ir a la actividad Menu
             val intent = Intent(this, Menu::class.java)
-            startActivity(intent)
+            startActivity(intent)  // Iniciar la actividad Menu
+            finish()  // Opcional, si quieres cerrar la actividad Historial después de abrir Menu
         }
     }
 }
+
+
+

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.MyLogin"
         tools:ignore="ExtraText"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@drawable/border" />
 
         <activity
             android:name=".Historial"
@@ -31,8 +34,10 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
