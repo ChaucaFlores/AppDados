@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".Historial">
 
-    <!-- Botón para Volver a Lanzar -->
     <Button
         android:id="@+id/button1"
         android:layout_width="157dp"
@@ -20,7 +19,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.866" />
 
-    <!-- Botón para ir al Menú -->
     <Button
         android:id="@+id/button2"
         android:layout_width="157dp"
@@ -33,7 +31,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.866" />
 
-    <!-- ScrollView para que el contenido de la tabla se desplace cuando sea necesario -->
     <android.widget.ScrollView
         android:layout_width="384dp"
         android:layout_height="553dp"
@@ -45,7 +42,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.39">
 
-        <!-- TableLayout con un tamaño fijo -->
         <TableLayout
             android:id="@+id/historial_content"
             android:layout_width="match_parent"
